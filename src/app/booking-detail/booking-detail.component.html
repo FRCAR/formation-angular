@@ -1,0 +1,16 @@
+<div *ngIf="booking">
+    <h2>Booking : {{booking.name | uppercase}}</h2>
+    <div>
+        <label for="id">Id : </label>
+        <input id="id" [(ngModel)]="booking.id" placeholder="id">
+    </div>
+    <div>
+        <label for="name">Name : </label>
+        <input id="name" [(ngModel)]="booking.name" placeholder="name">
+    </div>
+    <!--div>
+        <label for="superId">Super id: </label>
+        <input id="superId" [(ngModel)]="superId" placeholder="superId">
+    </div-->
+    <button type="button" (click)="goBack()">go back</button>
+</div>

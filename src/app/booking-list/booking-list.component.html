@@ -1,0 +1,12 @@
+<h2>Bookings</h2>
+<ul class="booking">
+    <li *ngFor="let booking of bookings">
+        <!--button [class.selected]="booking === selectedBooking" type="button" (click)="onSelect(booking)"-->
+        <a routerLink="/booking/{{booking.id}}">
+            <span class="id">{{booking.id}}&nbsp;</span>
+            <span class="name">{{booking.name}}</span>
+        </a>
+        <!--/button-->
+    </li>
+</ul>
+<!--booking-detail [booking]="selectedBooking" [superId]="superName"></booking-detail-->
