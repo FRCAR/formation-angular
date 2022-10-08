@@ -1,0 +1,11 @@
+<div *ngIf="restaurant">
+    <h2>Restaurant : {{restaurant.name | uppercase}}</h2>
+    <div>
+        <label for="id">Id : </label>
+        <input id="id" [(ngModel)]="restaurant.id" placeholder="id">
+    </div>
+    <div>
+        <label for="name">Name : </label>
+        <input id="name" [(ngModel)]="restaurant.name" placeholder="name">
+    </div>
+</div>

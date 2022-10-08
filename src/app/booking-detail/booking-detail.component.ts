@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Booking } from '../interfaces/Booking';
+import { Table} from '../interfaces/Table';
 import { BookingService } from '../services/booking.service';
 
 @Component({
@@ -12,6 +13,7 @@ import { BookingService } from '../services/booking.service';
 export class BookingDetailComponent implements OnInit {
 
     booking: Booking | undefined;
+    tables: Table[] | undefined;
 
     constructor(
         private route: ActivatedRoute,
@@ -25,8 +27,18 @@ export class BookingDetailComponent implements OnInit {
 
     getBooking(): void {
         const id = Number(this.route.snapshot.paramMap.get('id'));
-        this.bookingService.getBooking(id)
-            .subscribe(booking => this.booking = booking);
+        let restaurantId = this.route.snapshot.queryParamMap.get('restaurantId');
+        if(id){
+            this.bookingService.getBooking(id)
+                .subscribe(this.fillBooking);
+        }else{
+            this.booking = {}; 
+        }
+
+    }
+
+    fillBooking(booking : Booking): void{
+        this.booking = booking;
     }
 
     goBack(): void {

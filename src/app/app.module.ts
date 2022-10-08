@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { BookingComponent } from './booking/booking.component';
 import { BookingListComponent } from './booking-list/booking-list.component';
 import { BookingDetailComponent} from './booking-detail/booking-detail.component';
+import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
+import { RestaurantDetailComponent} from './restaurant-detail/restaurant-detail.component';
 import { AppRoutingModule } from './app-routing.module';
 
 
@@ -15,7 +17,9 @@ import { AppRoutingModule } from './app-routing.module';
         AppComponent,
         BookingComponent,
         BookingListComponent,
-        BookingDetailComponent
+        BookingDetailComponent,
+        RestaurantListComponent,
+        RestaurantDetailComponent
     ],
     imports: [
         BrowserModule,

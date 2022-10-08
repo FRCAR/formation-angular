@@ -1,0 +1,11 @@
+<h2>restaurants</h2>
+<div *ngFor="let restaurant of restaurants" class="restaurant">
+    <!--button [class.selected]="restaurant === selectedrestaurant" type="button" (click)="onSelect(restaurant)"-->
+    <a routerLink="/booking"
+        [queryParams]="{restaurantId:restaurant.id}">
+        <span class="id">{{restaurant.id}}&nbsp;</span>
+        <span class="name">{{restaurant.name}}</span>
+    </a>
+    <!--/button-->
+</div>
+<!--restaurant-detail [restaurant]="selectedrestaurant"></restaurant-detail-->
