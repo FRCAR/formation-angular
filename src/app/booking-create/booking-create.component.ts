@@ -6,6 +6,7 @@ import { Table } from '../interfaces/Table';
 import { Restaurant } from '../interfaces/Restaurant';
 import { BookingService } from '../services/booking.service';
 import { RestaurantService } from '../services/restaurant.service';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
     selector: 'booking-create',
@@ -14,9 +15,9 @@ import { RestaurantService } from '../services/restaurant.service';
 })
 export class BookingCreateComponent implements OnInit {
 
-    booking: Booking | undefined;
-    restaurant : Restaurant | undefined;
-    tables: Table[] | undefined;
+    booking: Booking = {};
+    restaurant?: Restaurant;
+    tables: Table[] = [];
 
     constructor(
         private route: ActivatedRoute,
@@ -32,19 +33,13 @@ export class BookingCreateComponent implements OnInit {
     getBooking(): void {
         const restaurantId = Number(this.route.snapshot.queryParamMap.get('restaurantId'));
         if (restaurantId) {
-            this.restaurantService.getRestaurant(restaurantId)
-                .subscribe(this.fillRestaurant);
-            this.tableService.getTables(restaurantId)
-                .subscribe(this.fillTables);
+            this.restaurantService.getRestaurant(restaurantId).subscribe(restaurant=> this.restaurant = restaurant);
+            this.restaurantService.getTables(restaurantId).subscribe(tables => this.tables = tables);
         }
     }
 
-    fillRestaurant(restaurant: Restaurant): void {
-        this.restaurant = restaurant;
-    }
-
-    fillTables(tables : Table[]): void {
-        this.tables = tables;
+    fillBooking(booking: Booking): void {
+        this.booking = booking;
     }
 
     goBack(): void {
@@ -52,13 +47,9 @@ export class BookingCreateComponent implements OnInit {
     }
 
 
-    save(): void{
-        //Appel du service de sauvegarde de booking
-
-        //récupération du booking.id
-        //go vers la fiche du booking
+    save(): void {
+        this.bookingService.updateBooking(this.booking)
+            .subscribe(booking => this.booking = booking);
     }
 
-    //@Input() booking?: Booking;
-    //@Input() superId?: string;
 }

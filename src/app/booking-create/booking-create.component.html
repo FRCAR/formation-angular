@@ -1,16 +1,26 @@
-<div *ngIf="restaurant">
-    <h2>Booking for restaurant {{restaurant.name}}</h2>
+<div>
+    <h2>Booking for restaurant {{restaurant?.name}}</h2>
     <div>
         <label for="id">Id : </label>
-        <input id="id" [(ngModel)]="booking.id" placeholder="id">
+        <input id="id" [(ngModel)]="booking.id" placeholder="id" readonly="readonly">
     </div>
     <div>
         <label for="name">Name : </label>
         <input id="name" [(ngModel)]="booking.name" placeholder="name">
     </div>
-    <!--div>
-        <label for="superId">Super id: </label>
-        <input id="superId" [(ngModel)]="superId" placeholder="superId">
-    </div-->
+    <div>
+        <label for="table">Table : </label>
+        <select id="table" [(ngModel)]="booking.tableId">
+            <option *ngFor="let table of tables" value="{{table.id}}">{{table.name}}</option>
+        </select>
+    <div>
+        <label for="dateTime">Date : </label>
+        <input type="datetime-local" id="dateTime"
+           [(ngModel)]="booking.dateTime"
+           min="2022-10-10T12:00" max="2023-10-10T12:00">
+    </div>
+
+
+    <button type="button" (click)="save()">save</button>
     <button type="button" (click)="goBack()">go back</button>
 </div>

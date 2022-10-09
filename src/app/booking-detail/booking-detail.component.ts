@@ -27,7 +27,6 @@ export class BookingDetailComponent implements OnInit {
 
     getBooking(): void {
         const id = Number(this.route.snapshot.paramMap.get('id'));
-        let restaurantId = this.route.snapshot.queryParamMap.get('restaurantId');
         if(id){
             this.bookingService.getBooking(id)
                 .subscribe(this.fillBooking);
